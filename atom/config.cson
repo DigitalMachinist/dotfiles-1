@@ -4,6 +4,7 @@
     disabledPackages: [
       "react"
     ]
+    telemetryConsent: "no"
     themes: [
       "one-dark-ui"
       "cobalt2-syntax"
@@ -19,6 +20,7 @@
     showInvisibles: true
     softWrap: true
     softWrapAtPreferredLineLength: true
+    tabLength: 4
     tabType: "soft"
   emmet: {}
   "exception-reporting":

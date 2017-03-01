@@ -172,17 +172,17 @@
         newNormal = "green bold"
         newHighlight = "green bold 22"
 
-[color "status"]
-        added = green reverse
-        changed = yellow reverse
-        untracked = red reverse
+# [color "status"]
+#         added = green reverse
+#         changed = yellow reverse
+#         untracked = red reverse
 
 # Git mergetool
 [merge]
         tool = opendiff
 
 [core]
-        editor = nano
+        editor = vim
         abbrev = 12
         attributesfile = ~/.gitattributes
         excludesfile = ~/.gitignore

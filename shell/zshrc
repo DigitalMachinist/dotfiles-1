@@ -6,16 +6,15 @@ declare -a dirs_to_prepend
 dirs_to_prepend=(
   "/usr/bin"
   "/usr/local/sbin"
-  "/usr/local/git/bin"
   "/usr/local/"
-  "/usr/local/mysql/bin"
-  "/sw/bin/"
   "$HOME/dotfiles/bin"
   "$HOME/bin"
   "$HOME/.rvm/bin"
   "$(brew --prefix ruby)/bin"
   "$(brew --prefix coreutils)/libexec/gnubin" # Add brew-installed GNU core utilities bin
   "$(brew --prefix)/share/npm/bin" # Add npm-installed package bin
+  "$HOME/.composer/vendor/bin"
+  "$(brew --prefix homebrew/php/php71)/bin"
 )
 
 # Explicitly configured $PATH
@@ -37,7 +36,7 @@ export PATH
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="nick"
+ZSH_THEME="robbyrussell"
 
 # Z beats cd most of the time
 . ~/z/z.sh
@@ -64,12 +63,12 @@ ENABLE_CORRECTION="true"
 COMPLETION_WAITING_DOTS="true"
 
 # Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=$HOME/dotfiles/zsh
+#ZSH_CUSTOM=$HOME/dotfiles/zsh
 
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(fabric brew node npm history git-flow vagrant zsh-syntax-highlighting)
+plugins=(fabric brew node npm history vagrant zsh-syntax-highlighting)
 
 # User configuration
 
@@ -79,9 +78,9 @@ for file in $HOME/.{shell_exports,shell_aliases,shell_functions,shell_config}; d
 done;
 unset file;
 
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-  . `brew --prefix`/etc/bash_completion
-fi
+#if [ -f `brew --prefix`/etc/bash_completion ]; then
+#  . `brew --prefix`/etc/bash_completion
+#fi
 
 # Automatically list directory contents on `cd`.
 # auto-ls () {
@@ -97,7 +96,7 @@ source $ZSH/oh-my-zsh.sh
 [ -f ~/.zsh.local ] && source ~/.zsh.local
 
 # npm tab completion
-. <(npm completion)
+#. <(npm completion)
 
 # fortune: brew install fortune ponysay
-fortune | ponysay
+# fortune

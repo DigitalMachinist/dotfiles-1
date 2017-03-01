@@ -8,7 +8,7 @@
 #
 
 # Set computer name
-COMPUTERNAME="Nick Plekhanov's MBP"
+COMPUTERNAME="Ryantology MBP"
 HOSTNAME='mbp'
 LOCALHOSTNAME='mbp'
 
@@ -27,6 +27,15 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 #sudo scutil --set HostName $HOSTNAME
 #sudo scutil --set LocalHostName $LOCALHOSTNAME
 #sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string $LOCALHOSTNAME
+
+# Disable smart quotes as they’re annoying when typing code
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+
+# Disable smart dashes as they’re annoying when typing code
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+
+# Stop iTunes from responding to the keyboard media keys
+launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
 
 ###############################################################################
 # Apple software: Safari, Updater, iTunes, etc.                               #
@@ -73,9 +82,15 @@ defaults write com.apple.terminal StringEncodings -array 4
 # Disable some menu bar icons: Time Machine, Volume and User
 for domain in ~/Library/Preferences/ByHost/com.apple.stytemuiserver.*; do
   "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
-  "/System/Library/CoreServices/Menu Extras/Volume.menu" \
   "/System/Library/CoreServices/Menu Extras/User.menu"
 done
+
+###############################################################################
+# Photos                                                                      #
+###############################################################################
+
+# Prevent Photos from opening automatically when devices are plugged in
+defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
 ###############################################################################
 # Activity Monitor                                                            #
@@ -99,22 +114,23 @@ defaults write com.apple.ActivityMonitor SortDirection -int 0
 ###############################################################################
 
 # Map bottom right corner of Apple trackpad to right-click.
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
-defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
-defaults -currentHost write -g com.apple.trackpad.trackpadCornerClickBehavior -int 1
-defaults -currentHost write com.apple.trackpad.enableSecondaryClick -bool true
+# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadCornerSecondaryClick -int 2
+# defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad TrackpadRightClick -bool true
+# defaults -currentHost write -g com.apple.trackpad.trackpadCornerClickBehavior -int 1
+# defaults -currentHost write com.apple.trackpad.enableSecondaryClick -bool true
 
 # Set a really fast keyboard repeat rate.
-defaults write -g KeyRepeat -int 0
+defaults write -g KeyRepeat -int 1
+defaults write -g InitialKeyRepeat -int 15
 
 # Disable press-and-hold for keys in favor of key repeat.
 defaults write -g ApplePressAndHoldEnabled -bool false
 
 # Set language and text formats. (USD and Imperial Units)
-defaults write -g AppleLanguages -array "en" "nl"
-defaults write -g AppleLocale -string "en_US@currency=USD"
-defaults write -g AppleMeasurementUnits -string "Inches"
-defaults write -g AppleMetricUnits -bool false
+# defaults write -g AppleLanguages -array "en" "nl"
+# defaults write -g AppleLocale -string "en_US@currency=USD"
+# defaults write -g AppleMeasurementUnits -string "Inches"
+# defaults write -g AppleMetricUnits -bool false
 
 ###############################################################################
 # Screen
@@ -137,15 +153,15 @@ defaults write -g AppleMetricUnits -bool false
 
 # Require password immediately after sleep or screen saver.
 defaults write com.apple.screensaver askForPassword -int 1
-defaults write com.apple.screensaver askForPasswordDelay -int 0
+defaults write com.apple.screensaver askForPasswordDelay -int 2
 
 # Save screenshots to desktop and disable the horrific drop-shadow.
-defaults write com.apple.screencapture location -string "${HOME}/Desktop/Screenshots"
-defaults write com.apple.screencapture type -string "png"
-defaults write com.apple.screencapture disable-shadow -bool true
+# defaults write com.apple.screencapture location -string "${HOME}/Desktop/Screenshots"
+# defaults write com.apple.screencapture type -string "png"
+# defaults write com.apple.screencapture disable-shadow -bool true
 
 # Enable sub-pixel rendering on non-Apple LCDs.
-defaults write NSGlobalDomain AppleFontSmoothing -int 2
+# defaults write NSGlobalDomain AppleFontSmoothing -int 2
 
 # Disable and kill Dashboard
 # Can be reverted with:
@@ -185,7 +201,7 @@ defaults write com.apple.finder QLEnableTextSelection -bool true
 defaults write com.apple.finder WarnOnEmptyTrash -bool false
 
 # Enable auto-correct
-defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool true
+# defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool true
 
 # Disable the “Are you sure you want to open this application?” dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
@@ -197,10 +213,19 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
 
 # Disable Resume system-wide
-defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
+# defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false
 
 # Disable the crash reporter
-defaults write com.apple.CrashReporter DialogType -string "none"
+# defaults write com.apple.CrashReporter DialogType -string "none"
+
+# Finder: show status bar
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# Finder: show path bar
+defaults write com.apple.finder ShowPathbar -bool true
+
+# Display full POSIX path as Finder window title
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true
 
 ###############################################################################
 # SSD
@@ -217,10 +242,10 @@ sudo pmset -a sms 0
 defaults write com.apple.dock show-process-indicators -bool true
 
 # Add several spacers
-defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
-defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
-defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
-defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
+# defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
+# defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
+# defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
+# defaults write com.apple.dock persistent-apps -array-add '{tile-data={}; tile-type="spacer-tile";}'
 
 # Automatically hide and show the Dock
 # defaults write com.apple.dock autohide -bool true

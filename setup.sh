@@ -303,22 +303,22 @@ install_zsh () {
 
 # Package managers & packages
 
-# . "$DOTFILES_DIR/install/brew.sh"
+. "$DOTFILES_DIR/install/brew.sh"
 # . "$DOTFILES_DIR/install/npm.sh"
 
-# if [ "$(uname)" == "Darwin" ]; then
-    # . "$DOTFILES_DIR/install/brew-cask.sh"
-# fi
+if [ "$(uname)" == "Darwin" ]; then
+    . "$DOTFILES_DIR/install/brew-cask.sh"
+fi
 
 main
-# install_zsh
+install_zsh
 
 ###############################################################################
 # Atom                                                                        #
 ###############################################################################
 
 # Copy over Atom configs
-#cp -r atom/packages.list $HOME/.atom
+cp -r atom/packages.list $HOME/.atom
 
 # Install community packages
 #apm list --installed --bare - get a list of installed packages
