@@ -15,7 +15,7 @@ apps=(
     iterm2
     atom
     firefox
-    # google-chrome
+    google-chrome
     # malwarebytes-anti-malware
     kaleidoscope
     macdown
@@ -27,8 +27,10 @@ apps=(
     steam
     sonos
     postman
+    sequel-pro
     sketch
     backblaze
+    sublime-text2
 )
 
 brew cask install "${apps[@]}"

@@ -310,8 +310,8 @@ if [ "$(uname)" == "Darwin" ]; then
     . "$DOTFILES_DIR/install/brew-cask.sh"
 fi
 
-main
 install_zsh
+main
 
 ###############################################################################
 # Atom                                                                        #
