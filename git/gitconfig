@@ -254,3 +254,7 @@
 
 [fetch]
         prune = true
+
+[user]
+    name = Ryan White
+    email = ryanw@craynenashe.com

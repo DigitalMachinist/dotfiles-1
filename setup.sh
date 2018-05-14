@@ -203,6 +203,15 @@ done
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
+  # Warn user this script will overwrite current dotfiles
+  while true; do
+    read -p "Running the main install. Continue? [y/n] " yn
+    case $yn in
+      [Yy]* ) break;;
+      [Nn]* ) exit;;
+      * ) echo "Please answer yes or no.";;
+    esac
+  done
 
   local i=''
   local sourceFile=''
@@ -255,16 +264,17 @@ main() {
 
   unset BINARIES
 
-  # Symlink online-check.sh
-  ln -fs $HOME/dotfiles/lib/online-check.sh $HOME/online-check.sh
+  # I don't find the need for this online check.
+  # # Symlink online-check.sh
+  # ln -fs $HOME/dotfiles/lib/online-check.sh $HOME/online-check.sh
 
-  # Write out current crontab
-  crontab -l > mycron
-  # Echo new cron into cron file
-  echo "* * * * * ~/online-check.sh" >> mycron
-  # Install new cron file
-  crontab mycron
-  rm mycron
+  # # Write out current crontab
+  # crontab -l > mycron
+  # # Echo new cron into cron file
+  # echo "* * * * * ~/online-check.sh" >> mycron
+  # # Install new cron file
+  # crontab mycron
+  # rm mycron
 
 }
 
@@ -302,34 +312,23 @@ install_zsh () {
 }
 
 # Package managers & packages
-
-. "$DOTFILES_DIR/install/brew.sh"
+# These have already been run.
+# . "$DOTFILES_DIR/install/brew.sh"
 # . "$DOTFILES_DIR/install/npm.sh"
 
-if [ "$(uname)" == "Darwin" ]; then
-    . "$DOTFILES_DIR/install/brew-cask.sh"
-fi
+# if [ "$(uname)" == "Darwin" ]; then
+#     . "$DOTFILES_DIR/install/brew-cask.sh"
+# fi
 
 install_zsh
 main
-
-###############################################################################
-# Atom                                                                        #
-###############################################################################
-
-# Copy over Atom configs
-cp -r atom/packages.list $HOME/.atom
-
-# Install community packages
-#apm list --installed --bare - get a list of installed packages
-#apm install --packages-file $HOME/.atom/packages.list
 
 ###############################################################################
 # Zsh                                                                         #
 ###############################################################################
 
 # Install Zsh settings
-ln -s ~/dotfiles/zsh/themes/nick.zsh-theme $HOME/.oh-my-zsh/themes
+# ln -s ~/dotfiles/zsh/themes/nick.zsh-theme $HOME/.oh-my-zsh/themes
 
 
 ###############################################################################
