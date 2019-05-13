@@ -61,7 +61,7 @@ hash gls >/dev/null 2>&1 || alias gls="ls"
 
 # Always use color output for `ls`
 # Detect which `ls` flavor is in use
-if gls --color > /dev/null 2>&1; then # GNU `ls`
+if ls --color > /dev/null 2>&1; then # GNU `ls`
   colorflag="--color"
 else # OS X `ls`
   colorflag="-G"
@@ -73,7 +73,7 @@ export CLICOLOR_FORCE=1
 alias l="ls -lF ${colorflag}"
 
 # ls options: A = include hidden (but not . or ..), F = put `/` after folders, h = byte unit suffixes
-alias ls='ls -AFh ${colorflag} --group-directories-first'
+alias ls='ls -AFh ${colorflag}'
 
 # List all files colorized in long format, including dot files
 alias la="ls -la ${colorflag}"

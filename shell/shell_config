@@ -1,7 +1,7 @@
 # History
 HISTFILE=~/.zsh_history
-HISTSIZE=50000
-SAVEHIST=50000
+HISTSIZE=20000
+SAVEHIST=20000
 
 setopt inc_append_history # Append history as commands are executed
 setopt hist_ignore_all_dups # Don't save duplicates

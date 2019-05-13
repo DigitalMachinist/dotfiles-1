@@ -47,15 +47,15 @@ apps=(
     moreutils
     findutils
     fortune
-    gnu-sed --with-default-names
-    grep --with-default-names
+    #gnu-sed --with-default-names
+    #grep --with-default-names
     mtr
     autojump
-    imagemagick --with-webp
+    imagemagick
     source-highlight
-    the_silver_searcher
+    #the_silver_searcher
     tree
-    ffmpeg --with-libvpx
+    ffmpeg
     wget
     wifi-password
     diff-so-fancy
