@@ -190,7 +190,7 @@ declare -a FILES_TO_SYMLINK=(
 
 )
 
-# FILES_TO_SYMLINK="$FILES_TO_SYMLINK .vim bin" # add in vim and the binaries
+FILES_TO_SYMLINK="$FILES_TO_SYMLINK .vim bin" # add in vim and the binaries
 
 # Move any existing dotfiles in homedir to dotfiles_old directory, then create symlinks from the homedir to any files in the ~/dotfiles directory specified in $files
 
@@ -312,15 +312,14 @@ install_zsh () {
 }
 
 # Package managers & packages
-# These have already been run.
-# . "$DOTFILES_DIR/install/brew.sh"
-# . "$DOTFILES_DIR/install/npm.sh"
+. "$DOTFILES_DIR/install/brew.sh"
+. "$DOTFILES_DIR/install/npm.sh"
 
-# if [ "$(uname)" == "Darwin" ]; then
-#     . "$DOTFILES_DIR/install/brew-cask.sh"
-# fi
+if [ "$(uname)" == "Darwin" ]; then
+    . "$DOTFILES_DIR/install/brew-cask.sh"
+fi
 
-#install_zsh
+install_zsh
 main
 
 ###############################################################################
@@ -336,13 +335,13 @@ main
 ###############################################################################
 
 # Only use UTF-8 in Terminal.app
-#defaults write com.apple.terminal StringEncodings -array 4
-
-# Install the Solarized Dark theme for iTerm
-#open "${HOME}/dotfiles/iterm/themes/Solarized Dark.itermcolors"
+defaults write com.apple.terminal StringEncodings -array 4
 
 # Don’t display the annoying prompt when quitting iTerm
-#defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+
+# Show hidden files in Finder
+defaults write com.apple.finder AppleShowAllFiles YES
 
 # Reload zsh settings
 source ~/.zshrc
