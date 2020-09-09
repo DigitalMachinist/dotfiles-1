@@ -25,6 +25,7 @@ cd ~/migration
 #cp -R ~/migration/home/.ssh ~ # Be sure you want to do this. Overwriting these is disastrous!
 cp ~/migration/com.apple.airport.preferences.plist /Library/Preferences/SystemConfiguration  # Wifi/VPN
 cp ~/migration/com.tinyspeck.slackmacgap.plist ~/Library/Preferences
+cp ~/migration/com.microsoft.rdc.mac.plist ~/Library/Containers/com.microsoft.rdc.mac/Data/Library/Preferences
 cp -R ~/migration/Documents ~
 cp ~/migration/.bash_history ~
 cp ~/migration/.bashrc ~

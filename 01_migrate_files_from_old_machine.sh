@@ -19,6 +19,7 @@ cd ~/migration
 cp -R ~/.ssh ~/migration/home
 cp /Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist ~/migration  # Wifi/VPN
 cp ~/Library/Preferences/com.tinyspeck.slackmacgap.plist ~/migration
+cp ~/Library/Containers/com.microsoft.rdc.mac/Data/Library/Preferences/com.microsoft.rdc.mac.plist ~/migration
 cp -R ~/Documents ~/migration
 cp ~/.bash_history ~/migration
 cp ~/.bashrc ~/migration
