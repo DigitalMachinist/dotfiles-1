@@ -38,6 +38,7 @@ cp ~/migration/.add-identity ~
 cp ~/migration/spaceship.zsh-theme ~/.oh-my-zsh/custom/themes/spaceship.zsh-theme
 cp -R ~/migration/z ~
 cp -R ~/migration/.vim ~
+cp ~/migration/karabiner.json ~/.config/karabiner
 
 # Sequel Pro favourite queries & DB connections
 cp ~/migration/sequelpro/Favorites.plist ~/Library/Application\ Support/Sequel\ Pro/Data
