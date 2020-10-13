@@ -345,3 +345,8 @@ defaults write com.apple.finder AppleShowAllFiles YES
 
 # Reload zsh settings
 source ~/.zshrc
+
+# Install PECL Redis used by Rivalry
+# (say yes to igbinary and no to the other options)
+pecl install igbinary
+pecl install redis
