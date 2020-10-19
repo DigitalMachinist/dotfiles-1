@@ -343,6 +343,9 @@ defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 # Show hidden files in Finder
 defaults write com.apple.finder AppleShowAllFiles YES
 
+# Hold key to repeat in VSCode
+defaults write com.microsoft.VSCode ApplePressAndHoldEnabled -bool true
+
 # Reload zsh settings
 source ~/.zshrc
 
